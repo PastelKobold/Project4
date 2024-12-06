@@ -105,14 +105,14 @@ def checkWin():
           print("Cards Player Has:", player_card) 
           print("Score Of The Player:", player_score) 
           print("Player wins (Dealer Loss Because Dealer Score is exceeding 21)")
-          winLbl.config(text= "Player wins") 
+          winLbl.config(text= "Player 1 wins") 
     elif player_score > dealer_score: 
           print("Cards Dealer Has:", dealer_card) 
           print("Score Of The Dealer:", dealer_score) 
           print("Cards Player Has:", player_card) 
           print("Score Of The Player:", player_score) 
           print("Player wins (Player Has High Score than Dealer)")
-          winLbl.config(text= "Player wins") 
+          winLbl.config(text= "Player 1 wins") 
     elif dealer_score > player_score: 
           print("Cards Dealer Has:", dealer_card) 
           print("Score Of The Dealer:", dealer_score) 
@@ -299,14 +299,19 @@ reset = Button(root, text = "Reset", command = lambda: resetB(arr), height = 3, 
 reset.grid(row = 25, column = 1, columnspan=4)
 
 winLbl = Label(root)
-dealerscore = Label(root)
+dealerscore = Label(root, text="")
+dealerscore2 = Label(root, text="Dealer Score:")
 playerturnl = Label(root, text="Player1's turn")
 playerscore = Label(root, text="0")
+playerscore2 = Label(root, text="Player Score:")
 
-winLbl.grid(row = 8, column = 2, columnspan=3)
-dealerscore.grid(row = 8, column=4, columnspan=3)
-playerturnl.grid(row = 11, column=2, columnspan=3)
-playerscore.grid(row = 11, column=4, columnspan=3)
+winLbl.grid(row = 8, column = 1, columnspan=3)
+dealerscore2.grid(row = 8, column=4, columnspan=3)
+dealerscore.grid(row = 8, column=6, columnspan=3)
+playerturnl.grid(row = 11, column=1, columnspan=3)
+playerscore2.grid(row = 11, column=4, columnspan=3)
+playerscore.grid(row = 11, column=6, columnspan=3)
+
 
 
 root.mainloop()
