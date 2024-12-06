@@ -95,6 +95,19 @@ def checkWin():
             dealer_score += card_value(new_card)
     dealer_score = sum(card_value(card) for card in dealer_card) 
     dealerscore.config(text = dealer_score)
+    count = 0
+    for x in dealer_card:
+        result = ""
+        count += 1
+        #dealer_score = sum(card_value(card) for card in player_card)
+        for y in x:
+            #if (y != 'Ace', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King'):
+            #      result = y
+            #else:
+            result = result + y
+            arr[0][count].config(text = result)
+            #dealerscore.config(text = dealer_score)
+
     print("Cards Dealer Has:", dealer_card)
     print("Cards Dealer Has:", dealer_card) 
     print("Score Of The Dealer:", dealer_score)
@@ -126,6 +139,7 @@ def checkWin():
           print("Cards Player Has:", player_card) 
           print("Score Of The Player:", player_score) 
           print("It's a tie.")
+          winLbl.config(text= "Tie Game")
 """
             if (x < 4):
                 if(arr[x][y]['text']==arr[x+1][y]['text']==arr[x+2][y]['text']==arr[x+3][y]['text'] and arr[x][y]['text']!= ''):
