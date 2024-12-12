@@ -366,8 +366,15 @@ def Stop():
       global currentplayer
       if currentplayer != 4:
             currentplayer = currentplayer + 1
+            if currentplayer == 2:
+                player1turnl.config(text="Player2's turn")
+            if currentplayer == 3:
+                player1turnl.config(text="Player3's turn")
+            if currentplayer == 4:
+                player1turnl.config(text="Player4's turn")
             return
       else:
+        player1turnl.config(text="Reset Game")
         checkWin()
 
 #Help button that explains game
