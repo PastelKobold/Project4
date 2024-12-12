@@ -18,9 +18,15 @@ def card_value(card):
 		return int(card[0]) 
 
 random.shuffle(deck) 
-player_card = [deck.pop(), deck.pop()] 
+player1_card = [deck.pop(), deck.pop()] 
+player2_card = [deck.pop(), deck.pop()] 
+player3_card = [deck.pop(), deck.pop()] 
+player4_card = [deck.pop(), deck.pop()] 
 dealer_card = [deck.pop(), deck.pop()] 
-player_score = sum(card_value(card) for card in player_card) 
+player1_score = sum(card_value(card) for card in player1_card) 
+player2_score = sum(card_value(card) for card in player2_card) 
+player3_score = sum(card_value(card) for card in player3_card) 
+player4_score = sum(card_value(card) for card in player4_card) 
 dealer_score = sum(card_value(card) for card in dealer_card) 
 
 """
@@ -61,26 +67,26 @@ print("\n")
 if dealer_score > 21: 
 	print("Cards Dealer Has:", dealer_card) 
 	print("Score Of The Dealer:", dealer_score) 
-	print("Cards Player Has:", player_card) 
-	print("Score Of The Player:", player_score) 
+	print("Cards Player Has:", player1_card) 
+	print("Score Of The Player:", player1_score) 
 	print("Player wins (Dealer Loss Because Dealer Score is exceeding 21)") 
-elif player_score > dealer_score: 
+elif player1_score > dealer_score: 
 	print("Cards Dealer Has:", dealer_card) 
 	print("Score Of The Dealer:", dealer_score) 
-	print("Cards Player Has:", player_card) 
-	print("Score Of The Player:", player_score) 
+	print("Cards Player Has:", player1_card) 
+	print("Score Of The Player:", player1_score) 
 	print("Player wins (Player Has High Score than Dealer)") 
-elif dealer_score > player_score: 
+elif dealer_score > player1_score: 
 	print("Cards Dealer Has:", dealer_card) 
 	print("Score Of The Dealer:", dealer_score) 
-	print("Cards Player Has:", player_card) 
-	print("Score Of The Player:", player_score) 
+	print("Cards Player Has:", player1_card) 
+	print("Score Of The Player:", player1_score) 
 	print("Dealer wins (Dealer Has High Score than Player)") 
 else: 
 	print("Cards Dealer Has:", dealer_card) 
 	print("Score Of The Dealer:", dealer_score) 
-	print("Cards Player Has:", player_card) 
-	print("Score Of The Player:", player_score) 
+	print("Cards Player Has:", player1_card) 
+	print("Score Of The Player:", player1_score) 
 	print("It's a tie.")
 
 
@@ -107,39 +113,101 @@ def checkWin():
             result = result + y
             arr[0][count].config(text = result)
             #dealerscore.config(text = dealer_score)
+    count = 0
+    for x in player1_card:
+        result = ""
+        count += 1
+        player1_score = sum(card_value(card) for card in player1_card)
+        for y in x:
+                        #if (y != 'Ace', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King'):
+                        #      result = y
+                        #else:
+            result = result + y
+            arr[2][count].config(text = result)
+            player1score.config(text = player1_score)
 
     print("Cards Dealer Has:", dealer_card)
     print("Cards Dealer Has:", dealer_card) 
     print("Score Of The Dealer:", dealer_score)
     print("\n") 
+    count = 0
+    for x in player2_card:
+        result = ""
+        count += 1
+        player2_score = sum(card_value(card) for card in player2_card)
+        for y in x:
+                        #if (y != 'Ace', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King'):
+                        #      result = y
+                        #else:
+            result = result + y
+            arr[3][count].config(text = result)
+            player2score.config(text = player2_score)
+    count = 0
+    for x in player3_card:
+        result = ""
+        count += 1
+        player3_score = sum(card_value(card) for card in player3_card)
+        for y in x:
+                        #if (y != 'Ace', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King'):
+                        #      result = y
+                        #else:
+            result = result + y
+            arr[4][count].config(text = result)
+            player3score.config(text = player3_score)
+    count = 0
+    for x in player4_card:
+        result = ""
+        count += 1
+        player4_score = sum(card_value(card) for card in player4_card)
+        for y in x:
+                        #if (y != 'Ace', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King'):
+                        #      result = y
+                        #else:
+            result = result + y
+            arr[5][count].config(text = result)
+            player4score.config(text = player4_score)
+
+    
     if dealer_score > 21: 
           print("Cards Dealer Has:", dealer_card) 
           print("Score Of The Dealer:", dealer_score) 
-          print("Cards Player Has:", player_card) 
-          print("Score Of The Player:", player_score) 
-          print("Player wins (Dealer Loss Because Dealer Score is exceeding 21)")
+          print("Cards Player Has:", player1_card) 
+          print("Score Of The Player:", player1_score) 
+          print("Everyone wins (Dealer Loss Because Dealer Score is exceeding 21)")
           winLbl.config(text= "Player 1 wins") 
-    elif player_score > dealer_score: 
+          winLbl2.config(text= "Player 2 wins") 
+          winLbl3.config(text= "Player 3 wins") 
+          winLbl4.config(text= "Player 4 wins")
+          return 
+    if player1_score > dealer_score and player1_score <= 21: 
           print("Cards Dealer Has:", dealer_card) 
           print("Score Of The Dealer:", dealer_score) 
-          print("Cards Player Has:", player_card) 
-          print("Score Of The Player:", player_score) 
+          print("Cards Player Has:", player1_card) 
+          print("Score Of The Player:", player1_score) 
           print("Player wins (Player Has High Score than Dealer)")
           winLbl.config(text= "Player 1 wins") 
-    elif dealer_score > player_score: 
-          print("Cards Dealer Has:", dealer_card) 
-          print("Score Of The Dealer:", dealer_score) 
-          print("Cards Player Has:", player_card) 
-          print("Score Of The Player:", player_score) 
-          print("Dealer wins (Dealer Has High Score than Player)")
-          winLbl.config(text= "Dealer wins") 
-    else: 
-          print("Cards Dealer Has:", dealer_card) 
-          print("Score Of The Dealer:", dealer_score) 
-          print("Cards Player Has:", player_card) 
-          print("Score Of The Player:", player_score) 
-          print("It's a tie.")
-          winLbl.config(text= "Tie Game")
+    if player2_score > dealer_score and player2_score <= 21: 
+          winLbl2.config(text= "Player 2 wins") 
+    if player3_score > dealer_score and player3_score <= 21: 
+          winLbl3.config(text= "Player 3 wins") 
+    if player4_score > dealer_score and player4_score <= 21: 
+          winLbl4.config(text= "Player 4 wins")
+    if dealer_score > player1_score or player1_score > 21: 
+          winLbl.config(text= "Player 1 loses")
+    if dealer_score > player2_score or player2_score > 21:
+           winLbl2.config(text= "Player 2 loses")
+    if dealer_score > player3_score or player3_score > 21:
+          winLbl3.config(text= "Player 3 loses")
+    if dealer_score > player4_score or player4_score > 21:
+          winLbl4.config(text= "Player 4 loses")
+    if dealer_score == player1_score:
+          winLbl.config(text= "Tie")
+    if dealer_score == player2_score:
+          winLbl2.config(text= "Tie")
+    if dealer_score == player3_score:
+          winLbl3.config(text= "Tie")
+    if dealer_score == player4_score:
+          winLbl4.config(text= "Tie")
 """
             if (x < 4):
                 if(arr[x][y]['text']==arr[x+1][y]['text']==arr[x+2][y]['text']==arr[x+3][y]['text'] and arr[x][y]['text']!= ''):
@@ -213,31 +281,94 @@ def press(x,y):
                 checkWin()
        """         
 def playerturn():
-      global player_card
+      global player1_card
+      global player2_card
+      global player3_card
+      global player4_card
       global dealer_card
-      if player == 1:
+      global currentplayer
+      if currentplayer == 1:
             count = 0
-            for x in player_card:
+            for x in player1_card:
                   result = ""
                   count += 1
-                  player_score = sum(card_value(card) for card in player_card)
+                  player1_score = sum(card_value(card) for card in player1_card)
                   for y in x:
                         #if (y != 'Ace', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King'):
                         #      result = y
                         #else:
                               result = result + y
                               arr[2][count].config(text = result)
-                              playerscore.config(text = player_score)
+                              player1score.config(text = player1_score)
+      if currentplayer == 2:
+            count = 0
+            for x in player2_card:
+                  result = ""
+                  count += 1
+                  player2_score = sum(card_value(card) for card in player2_card)
+                  for y in x:
+                        #if (y != 'Ace', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King'):
+                        #      result = y
+                        #else:
+                              result = result + y
+                              arr[3][count].config(text = result)
+                              player2score.config(text = player2_score)
+      if currentplayer == 3:
+            count = 0
+            for x in player3_card:
+                  result = ""
+                  count += 1
+                  player3_score = sum(card_value(card) for card in player3_card)
+                  for y in x:
+                        #if (y != 'Ace', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King'):
+                        #      result = y
+                        #else:
+                              result = result + y
+                              arr[4][count].config(text = result)
+                              player3score.config(text = player3_score)
+      if currentplayer == 4:
+            count = 0
+            for x in player4_card:
+                  result = ""
+                  count += 1
+                  player4_score = sum(card_value(card) for card in player4_card)
+                  for y in x:
+                        #if (y != 'Ace', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King'):
+                        #      result = y
+                        #else:
+                              result = result + y
+                              arr[5][count].config(text = result)
+                              player4score.config(text = player4_score)
                               
                               
 def Hit():
+    global currentplayer
     new_card = deck.pop()
-    player_card.append(new_card)
+    if currentplayer == 1:
+        player1_card.append(new_card)
+    if currentplayer == 2:
+        player2_card.append(new_card)
+    if currentplayer == 3:
+        player3_card.append(new_card)
+    if currentplayer == 4:
+        player4_card.append(new_card)
     playerturn()
     
 def Stop():
       #later increment player and if last player then call checkwin
-      checkWin()
+      for x in range(cols):
+        for y in range(rows):
+            if x == 0:
+                #do nothing because it never changes
+                arr[x][y].config(text='')
+            else:
+                arr[x][y].config(text='')
+      global currentplayer
+      if currentplayer != 4:
+            currentplayer = currentplayer + 1
+            return
+      else:
+        checkWin()
 
 #Help button that explains game
 def help():
@@ -246,8 +377,13 @@ def help():
 #Resets game
 def resetB(arr):
     global photo
-    global player_card
+    global player1_card
+    global player2_card
+    global player3_card
+    global player4_card
     global dealer_card
+    global currentplayer
+    currentplayer = 1
     for x in range(cols):
         for y in range(rows):
             if x == 1:
@@ -256,22 +392,35 @@ def resetB(arr):
             else:
                 arr[x][y].config(text='')
     winLbl.config(text = '')
+    winLbl2.config(text = '')
+    winLbl3.config(text = '')
+    winLbl4.config(text = '')
             #card_categories = ['♥', '♦', '♣', '♠'] 
             #cards_list = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'] 
             #deck = [(card, category) for category in card_categories for card in cards_list] 
     random.shuffle(deck)
-    player_card = [deck.pop(), deck.pop()] 
+    player1_card = [deck.pop(), deck.pop()] 
+    player2_card = [deck.pop(), deck.pop()] 
+    player3_card = [deck.pop(), deck.pop()] 
+    player4_card = [deck.pop(), deck.pop()] 
     dealer_card = [deck.pop(), deck.pop()] 
-    player_score = sum(card_value(card) for card in player_card) 
+    player1_score = sum(card_value(card) for card in player1_card) 
+    player2_score = sum(card_value(card) for card in player2_card) 
+    player3_score = sum(card_value(card) for card in player3_card) 
+    player4_score = sum(card_value(card) for card in player4_card) 
     dealer_score = sum(card_value(card) for card in dealer_card) 
-    playerturnl.config(text="Player1's turn")
-    playerscore.config(text = '0')
+    player1turnl.config(text="Player1's turn")
+    player1score.config(text = '0')
+    player2score.config(text = '0')
+    player3score.config(text = '0')
+    player4score.config(text = '0')
     dealerscore.config(text = '')
 
 root = Tk()
 root.geometry('300x300')
 #Make player
 player = 1
+currentplayer = player
 #Loading colors for game
 photo = PhotoImage(file = 'cardsfolder\Ace of Spades.png')
 photo2 = PhotoImage(file = 'cardsfolder\Empty.png')
@@ -313,18 +462,36 @@ reset = Button(root, text = "Reset", command = lambda: resetB(arr), height = 3, 
 reset.grid(row = 25, column = 1, columnspan=4)
 
 winLbl = Label(root)
+winLbl2 = Label(root)
+winLbl3 = Label(root)
+winLbl4 = Label(root)
 dealerscore = Label(root, text="")
 dealerscore2 = Label(root, text="Dealer Score:")
-playerturnl = Label(root, text="Player1's turn")
-playerscore = Label(root, text="0")
-playerscore2 = Label(root, text="Player Score:")
+player1turnl = Label(root, text="Player1's turn")
+player1score = Label(root, text="0")
+player2score = Label(root, text="0")
+player3score = Label(root, text="0")
+player4score = Label(root, text="0")
+player1score2 = Label(root, text="Player1 Score:")
+player2score2 = Label(root, text="Player2 Score:")
+player3score2 = Label(root, text="Player3 Score:")
+player4score2 = Label(root, text="Player4 Score:")
 
 winLbl.grid(row = 8, column = 1, columnspan=3)
+winLbl2.grid(row = 9, column = 1, columnspan=3)
+winLbl3.grid(row = 10, column = 1, columnspan=3)
+winLbl4.grid(row = 11, column = 1, columnspan=3)
 dealerscore2.grid(row = 8, column=4, columnspan=3)
 dealerscore.grid(row = 8, column=6, columnspan=3)
-playerturnl.grid(row = 11, column=1, columnspan=3)
-playerscore2.grid(row = 11, column=4, columnspan=3)
-playerscore.grid(row = 11, column=6, columnspan=3)
+player1turnl.grid(row = 12, column=1, columnspan=3)
+player1score2.grid(row = 11, column=4, columnspan=3)
+player1score.grid(row = 11, column=6, columnspan=3)
+player2score.grid(row = 12, column=6, columnspan=3)
+player2score2.grid(row = 12, column=4, columnspan=3)
+player3score.grid(row = 13, column=6, columnspan=3)
+player3score2.grid(row = 13, column=4, columnspan=3)
+player4score.grid(row = 14, column=6, columnspan=3)
+player4score2.grid(row = 14, column=4, columnspan=3)
 
 
 
