@@ -311,9 +311,10 @@ def resetB(arr):
     winLbl2.config(text = '')
     winLbl3.config(text = '')
     winLbl4.config(text = '')
-            #card_categories = ['♥', '♦', '♣', '♠'] 
-            #cards_list = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'] 
-            #deck = [(card, category) for category in card_categories for card in cards_list] 
+    #Recreating deck
+    card_categories = ['♥', '♦', '♣', '♠'] 
+    cards_list = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'] 
+    deck = [(card, category) for category in card_categories for card in cards_list] 
     random.shuffle(deck)
     player1_card = [deck.pop(), deck.pop()] 
     player2_card = [deck.pop(), deck.pop()] 
