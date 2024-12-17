@@ -17,6 +17,7 @@ def card_value(card):
 	else: 
 		return int(card[0]) 
 
+#Setting up players hands
 random.shuffle(deck) 
 player1_card = [deck.pop(), deck.pop()] 
 player2_card = [deck.pop(), deck.pop()] 
@@ -29,32 +30,7 @@ player3_score = sum(card_value(card) for card in player3_card)
 player4_score = sum(card_value(card) for card in player4_card) 
 dealer_score = sum(card_value(card) for card in dealer_card) 
 
-"""
-while True: 
-	player_score = sum(card_value(card) for card in player_card) 
-	dealer_score = sum(card_value(card) for card in dealer_card) 
-	print("Cards Player Has:", player_card) 
-	print("Score Of The Player:", player_score) 
-	print("\n") 
-	choice = input('What do you want? ["play" to request another card, "stop" to stop]: ').lower() 
-	if choice == "play": 
-		new_card = deck.pop() 
-		player_card.append(new_card) 
-	elif choice == "stop": 
-		break
-	else: 
-		print("Invalid choice. Please try again.") 
-		continue
-
-	if player_score > 21: 
-		print("Cards Dealer Has:", dealer_card) 
-		print("Score Of The Dealer:", dealer_score) 
-		print("Cards Player Has:", player_card) 
-		print("Score Of The Player:", player_score) 
-		print("Dealer wins (Player Loss Because Player Score is exceeding 21)") 
-		break
-"""
-          
+#Dealer is drawing
 while dealer_score < 17: 
 	new_card = deck.pop() 
 	dealer_card.append(new_card) 
@@ -92,13 +68,12 @@ else:
 
 #Check win conditions
 def checkWin():
-    #Check for range
-    #Left, Right, Up, Diagonal
+    #Dealer draws, if above 21 all players win. If not, players are compared to dealers score. If above then they win.
     dealer_score = sum(card_value(card) for card in dealer_card) 
     while dealer_score < 17: 
-            new_card = deck.pop() 
-            dealer_card.append(new_card) 
-            dealer_score += card_value(new_card)
+        new_card = deck.pop()
+        dealer_card.append(new_card) 
+        dealer_score += card_value(new_card)
     dealer_score = sum(card_value(card) for card in dealer_card) 
     dealerscore.config(text = dealer_score)
     count = 0
@@ -167,7 +142,7 @@ def checkWin():
             arr[5][count].config(text = result)
             player4score.config(text = player4_score)
 
-    
+    #Printing the win/loss to player
     if dealer_score > 21: 
           print("Cards Dealer Has:", dealer_card) 
           print("Score Of The Dealer:", dealer_score) 
@@ -208,78 +183,8 @@ def checkWin():
           winLbl3.config(text= "Tie")
     if dealer_score == player4_score:
           winLbl4.config(text= "Tie")
-"""
-            if (x < 4):
-                if(arr[x][y]['text']==arr[x+1][y]['text']==arr[x+2][y]['text']==arr[x+3][y]['text'] and arr[x][y]['text']!= ''):
-                    if(arr[x][y]['text'] == "Red"):
-                        playerturn.config(text = "Reset")
-                        winLbl.config(text = "Red Wins!")
-                    else:
-                        playerturn.config(text = "Reset")
-                        winLbl.config(text = "Yellow Wins!")
-            if (y < 4):
-                if(arr[x][y]['text']==arr[x][y+1]['text']==arr[x][y+2]['text']==arr[x][y+3]['text'] and arr[x][y]['text']!= ''):
-                    if(arr[x][y]['text'] == "Red"):
-                        playerturn.config(text = "Reset")
-                        winLbl.config(text = "Red Wins!")
-                    else:
-                        playerturn.config(text = "Reset")
-                        winLbl.config(text = "Yellow Wins!")
-            #Diagonals
-            if ((x < 7 and x > 4 and y < 4)):
-                if(arr[x][y]['text']==arr[x-1][y+1]['text']==arr[x-2][y+2]['text']==arr[x-3][y+3]['text'] and arr[x][y]['text']!= ''):
-                    if(arr[x][y]['text'] == "Red"):
-                        playerturn.config(text = "Reset")
-                        winLbl.config(text = "Red Wins!")
-                    else:
-                        playerturn.config(text = "Reset")
-                        winLbl.config(text = "Yellow Wins!")
 
-            if (x > 4  and (x < 7 and y < 7)):
-                if((arr[x][y]['text']==arr[x-1][y-1]['text']==arr[x-2][y-2]['text']==arr[x-3][y-3]['text']) and arr[x][y]['text']!= '' and  (not x-3 < 0) and (not y-3 < 0)):
-                    if(arr[x][y]['text'] == "Red"):
-                        playerturn.config(text = "Reset")
-                        winLbl.config(text = "Red Wins!")
-                    else:
-                        playerturn.config(text = "Reset")
-                        winLbl.config(text = "Yellow Wins!")
-            """
-#Function to handle when player clicks a button.
-def press(x,y):
-    """
-    global player
-    #global red_photo
-    #global yellow_photo
-    if (winLbl['text'] != "Dealer Wins!" and winLbl['text'] != "Player1 Wins!"):
-        if (arr[x][y] == arr[6][y]):
-            if (arr[x][y]['text'] != "Red" and arr[x][y]['text'] != "Yellow"):
-                arr[x][y].config(text = player)
-                if player == "Red":
-                    #arr[x][y].config(image=red_photo)
-                    player = "Yellow"
-                    playerturn.config(text = "Yellow's turn")
-                    #showturn.config(image=yellow_photo)
-                else:
-                    #arr[x][y].config(image=yellow_photo)
-                    player = "Red"
-                    playerturn.config(text = "Red's turn")
-                    #showturn.config(image=red_photo)
-                checkWin()
-        elif (arr[x+1][y]['text'] == "Red" or arr[x+1][y]['text'] == "Yellow"):
-            if (arr[x][y]['text'] != "Red" and arr[x][y]['text'] != "Yellow"):
-                arr[x][y].config(text = player)
-                if player == "Red":
-                    #arr[x][y].config(image=red_photo)
-                    player = "Yellow"
-                    playerturn.config(text = "Yellow's turn")
-                    #showturn.config(image=yellow_photo)
-                else:
-                    #arr[x][y].config(image=yellow_photo)
-                    player = "Red"
-                    playerturn.config(text = "Red's turn")
-                    #showturn.config(image=red_photo)
-                checkWin()
-       """         
+#Handling what happens during a players turn
 def playerturn():
       global player1_card
       global player2_card
@@ -340,17 +245,21 @@ def playerturn():
                               arr[5][count].config(text = result)
                               player4score.config(text = player4_score)
                               
-                              
+#Hit is adding a new card to the players hand. If their card total is above 21 they may not draw more                              
 def Hit():
     global currentplayer
     new_card = deck.pop()
-    if currentplayer == 1:
+    player1_score =sum(card_value(card) for card in player1_card)
+    player2_score = sum(card_value(card) for card in player2_card)
+    player3_score = sum(card_value(card) for card in player3_card)
+    player4_score = sum(card_value(card) for card in player4_card)
+    if currentplayer == 1 and player1_score < 21:
         player1_card.append(new_card)
-    if currentplayer == 2:
+    if currentplayer == 2 and player2_score < 21:
         player2_card.append(new_card)
-    if currentplayer == 3:
+    if currentplayer == 3 and player3_score < 21:
         player3_card.append(new_card)
-    if currentplayer == 4:
+    if currentplayer == 4 and player4_score < 21:
         player4_card.append(new_card)
     playerturn()
     
@@ -379,7 +288,7 @@ def Stop():
 
 #Help button that explains game
 def help():
-    messagebox.showinfo("Game instructions","Players choose yellow or red discs. They drop the discs into the grid, starting in the middle or at the edge to stack their colored discs upwards, horizontally, or diagonally. Use strategy to block opponents while aiming to be the first player to get 4 in a row to win.")
+    messagebox.showinfo("Game instructions","Each participant attempts to beat the dealer by getting a count as close to 21 as possible, without going over 21. When start is pressed you will be dealed 2 cards. The values of the cards are added to give you a total score. If your score is less than 21 you may chose to hit. If chosen you will draw another card, but be careful. If it takes your total above 21 you lose!")
 
 #Resets game
 def resetB(arr):
@@ -428,11 +337,9 @@ root.geometry('300x300')
 #Make player
 player = 1
 currentplayer = player
-#Loading colors for game
+#Loading images for game
 photo = PhotoImage(file = 'cardsfolder\Ace of Spades.png')
 photo2 = PhotoImage(file = 'cardsfolder\Empty.png')
-#red_photo = PhotoImage(file = "Red.png")
-#yellow_photo = PhotoImage(file = "Yellow.png")
 #Creating game grid
 rows, cols = (6, 6)
 arr = [[0 for y in range(cols)] for x in range(rows)]
@@ -440,34 +347,29 @@ for x in range(cols):
     for y in range(rows):
           if x == 1:
                 #for seperation between dealer and players
-                arr[x][y] = Button(root, text='', command= lambda x1=x, y1=y: press(x1,y1) , height = 30, width = 30, image=photo2)
+                arr[x][y] = Button(root, text='', height = 30, width = 30, image=photo2)
                 arr[x][y].grid(row = x, column = y)
           else:
-                arr[x][y] = Button(root, text='', command= lambda x1=x, y1=y: press(x1,y1) , height = 2, width = 4)#, image=photo)
+                arr[x][y] = Button(root, text='', height = 2, width = 4)#, image=photo)
                 arr[x][y].grid(row = x, column = y)
-            
-        	#arr[x][y] = Button(root, text='', command= lambda x1=x, y1=y: press(x1,y1) , height = 30, width = 30, image=photo)
-            #arr[x][y].grid(row = x, column = y)
 
-#Creating buttons
-#showturn = Button(root, text='', height = 30, width = 30, image=red_photo)
-#showturn.grid(row = 8, column = 11)
+#Buttons player will need to interact with
+start = Button(root, text="Start",  command = lambda: playerturn(), height = 3, width = 7)
+start.grid(row = 25, column=0,columnspan=4)
 
-start = Button(root, text="start",  command = lambda: playerturn(), height = 3, width = 10)
-start.grid(row = 33, column=1,columnspan=4)
+stop = Button(root, text="Stand",  command = lambda: Stop(), height = 3, width = 7)
+stop.grid(row = 29, column=3,columnspan=4)
 
-stop = Button(root, text="STOP",  command = lambda: Stop(), height = 3, width = 10)
-stop.grid(row = 31, column=1,columnspan=4)
-
-Hitb = Button(root, text="HIT",  command = lambda: Hit(), height = 3, width = 10)
+Hitb = Button(root, text="Hit",  command = lambda: Hit(), height = 3, width = 7)
 Hitb.grid(row = 29, column=1,columnspan=4)
 
-info = Button(root, text="Help",  command = lambda: help(), height = 3, width = 10)
-info.grid(row = 27, column=1,columnspan=4)
+info = Button(root, text="Help",  command = lambda: help(), height = 3, width = 7)
+info.grid(row = 25, column=2,columnspan=4)
 
-reset = Button(root, text = "Reset", command = lambda: resetB(arr), height = 3, width = 10)
-reset.grid(row = 25, column = 1, columnspan=4)
+reset = Button(root, text = "Reset", command = lambda: resetB(arr), height = 3, width = 7)
+reset.grid(row = 25, column = 5, columnspan=4)
 
+#Creating the scores for the player
 winLbl = Label(root)
 winLbl2 = Label(root)
 winLbl3 = Label(root)
@@ -484,6 +386,7 @@ player2score2 = Label(root, text="Player2 Score:")
 player3score2 = Label(root, text="Player3 Score:")
 player4score2 = Label(root, text="Player4 Score:")
 
+#Adding labels to the window/grid
 winLbl.grid(row = 8, column = 1, columnspan=3)
 winLbl2.grid(row = 9, column = 1, columnspan=3)
 winLbl3.grid(row = 10, column = 1, columnspan=3)
@@ -501,5 +404,5 @@ player4score.grid(row = 14, column=6, columnspan=3)
 player4score2.grid(row = 14, column=4, columnspan=3)
 
 
-
+root.geometry("300x550")
 root.mainloop()
