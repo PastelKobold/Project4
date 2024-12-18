@@ -207,6 +207,7 @@ def playerturn():
                               player1score.config(text = player1_score)
       if currentplayer == 2:
             count = 0
+            player1score.config(text = "?")
             for x in player2_card:
                   result = ""
                   count += 1
@@ -219,6 +220,7 @@ def playerturn():
                               arr[3][count].config(text = result)
                               player2score.config(text = player2_score)
       if currentplayer == 3:
+            player2score.config(text = "?")
             count = 0
             for x in player3_card:
                   result = ""
@@ -232,6 +234,7 @@ def playerturn():
                               arr[4][count].config(text = result)
                               player3score.config(text = player3_score)
       if currentplayer == 4:
+            player3score.config(text = "?")
             count = 0
             for x in player4_card:
                   result = ""
@@ -331,7 +334,7 @@ def resetB(arr):
     player2score.config(text = '0')
     player3score.config(text = '0')
     player4score.config(text = '0')
-    dealerscore.config(text = '')
+    dealerscore.config(text = '?')
 
 root = Tk()
 root.geometry('300x300')
@@ -375,7 +378,7 @@ winLbl = Label(root)
 winLbl2 = Label(root)
 winLbl3 = Label(root)
 winLbl4 = Label(root)
-dealerscore = Label(root, text="")
+dealerscore = Label(root, text="?")
 dealerscore2 = Label(root, text="Dealer Score:")
 player1turnl = Label(root, text="Player1's turn")
 player1score = Label(root, text="0")
